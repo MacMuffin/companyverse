@@ -3,6 +3,7 @@ import Link from "next/link";
 import { LatestPost } from "~/app/_components/post";
 import { auth } from "~/server/auth";
 import { api, HydrateClient } from "~/trpc/server";
+import { Button } from "@heroui/button";
 
 export default async function Home() {
   const hello = await api.post.hello({ text: "from tRPC" });
@@ -52,12 +53,14 @@ export default async function Home() {
               <p className="text-center text-2xl text-white">
                 {session && <span>Logged in as {session.user?.name}</span>}
               </p>
-              <Link
+              <Button
+                as={Link}
+                color="primary"
                 href={session ? "/api/auth/signout" : "/api/auth/signin"}
-                className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
+                variant="solid"
               >
                 {session ? "Sign out" : "Sign in"}
-              </Link>
+              </Button>
             </div>
           </div>
 
