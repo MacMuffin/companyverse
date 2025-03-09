@@ -14,6 +14,25 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+model Company {
+    id                       String  @id @default(cuid())
+    name                     String
+    about                    String
+}
+
+model CompanyLocation {
+    id                       String  @id @default(cuid())
+    street                   String
+    city                     String
+    zipCode                  String
+    country                  String
+}
+
+model Project {
+    id                       String @id @default(cuid())
+    name                     String
+}
+
 model Post {
     id        Int      @id @default(autoincrement())
     name      String
